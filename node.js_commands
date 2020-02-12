@@ -1,0 +1,22 @@
+C:\Users\Mustafa>cd C:\Users\Mustafa\Desktop\walkthrough
+
+C:\Users\Mustafa\Desktop\walkthrough>npm install
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN oauth-walkthrough-2.legged.auth@2.0.0 No repository field.
+
+added 172 packages from 113 contributors and audited 348 packages in 4.319s
+
+1 package is looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+
+C:\Users\Mustafa\Desktop\walkthrough>set FORGE_CLIENT_ID=<<HCs5X8DHWXJ99N3ArMdG2vIyXNRa3VZ1>>
+<< was unexpected at this time.
+
+C:\Users\Mustafa\Desktop\walkthrough>set FORGE_CLIENT_ID=HCs5X8DHWXJ99N3ArMdG2vIyXNRa3VZ
+
+C:\Users\Mustafa\Desktop\walkthrough>set FORGE_CLIENT_SECRET=iKQLufCLXG9nrCek
+
+C:\Users\Mustafa\Desktop\walkthrough>npm start
