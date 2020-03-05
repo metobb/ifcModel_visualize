@@ -1,0 +1,232 @@
+mapboxgl.accessToken = 'pk.eyJ1IjoibWV0ZWJvbmN1a2N1IiwiYSI6ImNrNjd5cm83bDFkb2kzcG83MHo0Ymtjam4ifQ.xcAWLWrwQ7Y18dAaWGVdpQ';
+    var map = (window.map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/meteboncukcu/ck74wqs8n3j8b1ipm4d3f3tyw',
+        zoom: 16,
+        center: [10.014500, 53.531700],
+        pitch: 60,
+        antialias: true // create the gl context with MSAA antialiasing, so custom layers are antialiased
+    }));
+
+    // parameters to ensure the model is georeferenced correctly on the map
+    let modelOrigin = [10.014500, 53.531700];
+    let modelAltitude = 30;
+    let modelRotate = [0,0,Math.PI/0.5];
+
+    var modelAsMercatorCoordinate = mapboxgl.MercatorCoordinate.fromLngLat(
+        modelOrigin,
+        modelAltitude
+    );
+
+
+    // transformation parameters to position, rotate and scale the 3D model onto the map
+    
+
+    
+    var modelTransform = {
+        translateX: modelAsMercatorCoordinate.x,
+        translateY: modelAsMercatorCoordinate.y,
+        translateZ: modelAsMercatorCoordinate.z,
+        rotateX: modelRotate[0],
+        rotateY: modelRotate[1],
+        rotateZ: modelRotate[2],
+        /* Since our 3D model is in real world meters, a scale transform needs to be
+         * applied since the CustomLayerInterface expects units in MercatorCoordinates.
+         */
+        scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits()
+   }
+   
+   
+  /*
+   private addGridInteraction() {
+        let localStorageGrid = this.localStorageService.getGrid();
+        if (localStorageGrid) {
+            this._bottomSheet.open(RestoreMessage);
+
+            this._bottomSheet._openedBottomSheetRef
+                .afterDismissed()
+                .subscribe(data => {
+                    if (data) {
+                        this.restoreLocalStorageGrid(localStorageGrid);
+                    } else {
+                        this.localStorageService.removeGrid();
+                    }
+                });
+        }
+        this.map.on("click", this.editableGridLayer, this.clickOnGrid);
+        // this.map.on('click', this.clickMenuClose);
+        // keyboard event
+        this.mapCanvas.addEventListener("keydown", this.keyStrokeOnMap);
+
+        // map multi select for logged in users
+        this.mapCanvas.addEventListener("mousedown", this.mouseDown, true);
+
+        this.map.on("dragstart", this.removePopUp);
+        this.map.on("zoomstart", this.removePopUp);
+    }
+
+*/
+
+    var THREE = window.THREE;
+
+    
+    // configuration of the custom layer for a 3D model per the CustomLayerInterface
+    var customLayer = {
+        id: '3d-model',
+        type: 'custom',
+        renderingMode: '3d',
+        onAdd: function(map, gl) {
+            this.camera = new THREE.Camera();
+            this.scene = new THREE.Scene();
+
+            // create two three.js lights to illuminate the model
+            var directionalLight = new THREE.DirectionalLight(0xffffff);
+            directionalLight.position.set(0, -70, 100).normalize();
+            this.scene.add(directionalLight);
+
+            var directionalLight2 = new THREE.DirectionalLight(0xffffff);
+            directionalLight2.position.set(0, 70, 100).normalize();
+            this.scene.add(directionalLight2);
+
+            // use the three.js GLTF loader to add the 3D model to the three.js scene
+            var loader = new THREE.GLTFLoader();
+            loader.load(
+                'https://raw.githubusercontent.com/metobb/ifcModel_visualize/master/Beispielmodell_St%C3%83%C2%A4dtebau_HH_v3.gltf',
+                function(gltf) {
+                    this.scene.add(gltf.scene);
+                }.bind(this)
+            );
+            this.map = map;
+
+            // use the Mapbox GL JS map canvas for three.js
+            this.renderer = new THREE.WebGLRenderer({
+                canvas: map.getCanvas(),
+                context: gl,
+                antialias: true
+            });
+
+            this.renderer.autoClear = false;
+        },
+        render: function(gl, matrix) {
+            var rotationX = new THREE.Matrix4().makeRotationAxis(
+                new THREE.Vector3(1, 0, 0),
+                modelTransform.rotateX
+            );
+            var rotationY = new THREE.Matrix4().makeRotationAxis(
+                new THREE.Vector3(0, 1, 0),
+                modelTransform.rotateY
+            );
+            var rotationZ = new THREE.Matrix4().makeRotationAxis(
+                new THREE.Vector3(0, 0, 1),
+                modelTransform.rotateZ
+            );
+
+            var m = new THREE.Matrix4().fromArray(matrix);
+            var l = new THREE.Matrix4()
+                .makeTranslation(
+                    modelTransform.translateX,
+                    modelTransform.translateY,
+                    modelTransform.translateZ
+                )
+                .scale(
+                    new THREE.Vector3(
+                        modelTransform.scale,
+                        -modelTransform.scale,
+                        modelTransform.scale
+                    )
+                )
+                .multiply(rotationX)
+                .multiply(rotationY)
+                .multiply(rotationZ);
+
+            this.camera.projectionMatrix = m.multiply(l);
+            this.renderer.state.reset();
+            this.renderer.render(this.scene, this.camera);
+            this.map.triggerRepaint();
+        }
+    };
+		
+  /*
+  map.on('load', function() {
+        // Insert the layer beneath any symbol layer.
+        var layers = map.getStyle().layers;
+
+        var labelLayerId;
+        for (var i = 0; i < layers.length; i++) {
+            if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+                labelLayerId = layers[i].id;
+                break;
+            }
+        }
+
+        map.addLayer(
+            {
+                'id': '3d-buildings',
+                'source': 'composite',
+                'source-layer': 'building',
+                'filter': ['==', 'extrude', 'true'],
+                'type': 'fill-extrusion',
+                'minzoom': 15,
+                'paint': {
+                    'fill-extrusion-color': '#aaa',
+
+                    // use an 'interpolate' expression to add a smooth transition effect to the
+                    // buildings as the user zooms in
+                    'fill-extrusion-height': [
+                        'interpolate',
+                        ['linear'],
+                        ['zoom'],
+                        15,
+                        0,
+                        15.05,
+                        ['get', 'height']
+                    ],
+                    'fill-extrusion-base': [
+                        'interpolate',
+                        ['linear'],
+                        ['zoom'],
+                        15,
+                        0,
+                        15.05,
+                        ['get', 'min_height']
+                    ],
+                    'fill-extrusion-opacity': 0.5
+                }
+            },
+            labelLayerId
+        );
+    });
+*/
+
+   map.on('style.load', function() {
+        map.addLayer(customLayer, 'floor-schedule-ll copy 1')});
+        
+ 
+    map.on('click', 'floor-schedule-ll copy 1', function(e) {
+new mapboxgl.Popup()
+.setLngLat(e.lngLat)
+.setHTML(e.features[0].properties.Area)
+.addTo(map);
+});
+
+ 
+// Change the cursor to a pointer when the mouse is over the layer
+map.on('mouseenter', 'floor-schedule-ll copy 1', function() {
+map.getCanvas().style.cursor = 'pointer';
+});
+ 
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'floor-schedule-ll copy 1', function() {
+map.getCanvas().style.cursor = '';
+});
+    
+ 
+        
+    map.on('style.load', function() {
+        map.addLayer(customLayer, 'waterway-label');
+    		
+    map.on('load', function() {
+		map.addSource('ck6kugi3n080y2nnsa8u9e6e8', {
+					type: 'geojson',
+					url: 'https://studio.mapbox.com/datasets/meteboncukcu/ck6kugi3n080y2nnsa8u9e6e8/edit/'
+		})})});
