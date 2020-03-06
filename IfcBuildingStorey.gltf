@@ -1,0 +1,224 @@
+{
+	"asset" : {
+		"generator" : "FME 2019.2.2.0",
+		"version" : "2.0"
+	},
+	"materials" : [
+		{
+			"name" : "default_material",
+			"pbrMetallicRoughness" : {
+				"baseColorFactor" : [ 0.8, 0.8, 0.8, 1 ],
+				"roughnessFactor" : 0.30000000000000004,
+				"metallicFactor" : 0.5
+			}
+		}
+	],
+	"meshes" : [],
+	"nodes" : [
+		{
+			"name" : "IfcBuildingStorey",
+			"matrix" : [ 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, -3, 0, 1 ],
+			"children" : [ 1, 2, 3 ]
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcBuildingStorey",
+			"matrix" : [ 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 1 ],
+			"children" : [ 5, 6, 7 ]
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcBuildingStorey",
+			"matrix" : [ 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 3, 0, 1 ],
+			"children" : [ 9, 10, 11 ]
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcBuildingStorey",
+			"matrix" : [ 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 6, 0, 1 ],
+			"children" : [ 13, 14, 15 ]
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcBuildingStorey",
+			"matrix" : [ 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 9, 0, 1 ],
+			"children" : [ 17, 18, 19 ]
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcBuildingStorey",
+			"matrix" : [ 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 12, 0, 1 ],
+			"children" : [ 21, 22, 23 ]
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcBuildingStorey",
+			"matrix" : [ 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 15, 0, 1 ],
+			"children" : [ 25, 26, 27 ]
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcBuildingStorey",
+			"matrix" : [ 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 18, 0, 1 ],
+			"children" : [ 29, 30, 31 ]
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcBuildingStorey",
+			"matrix" : [ 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 21, 0, 1 ],
+			"children" : [ 33, 34, 35 ]
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcBuildingStorey",
+			"matrix" : [ 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 24, 0, 1 ],
+			"children" : [ 37, 38, 39 ]
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcBuildingStorey",
+			"matrix" : [ 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 27, 0, 1 ],
+			"children" : [ 41, 42, 43 ]
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcBuildingStorey",
+			"matrix" : [ 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 30, 0, 1 ],
+			"children" : [ 45, 46, 47 ]
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcBuildingStorey",
+			"matrix" : [ 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 33, 0, 1 ],
+			"children" : [ 49, 50, 51 ]
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcBuildingStorey",
+			"matrix" : [ 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 36, 0, 1 ],
+			"children" : [ 53, 54, 55 ]
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		},
+		{
+			"name" : "IfcPropertySet"
+		}
+	],
+	"scenes" : [
+		{
+			"nodes" : [ 0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52 ]
+		}
+	],
+	"scene" : 0,
+	"accessors" : [],
+	"bufferViews" : [],
+	"buffers" : []
+}
